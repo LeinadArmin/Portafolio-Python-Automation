@@ -24,4 +24,4 @@ Bienvenido a mi portafolio técnico. Este repositorio contiene 3 soluciones esca
   * Documentación automática (Swagger UI).
 
 ---
-*Desarrollado por [Tu Nombre] - Ingeniero Informático*
+*Desarrollado por Daniel Marín - Ingeniero Informático*
