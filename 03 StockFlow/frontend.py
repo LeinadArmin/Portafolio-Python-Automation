@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import requests
+import time
 
 # Configuración de la página
 st.set_page_config(page_title="StockFlow Dashboard", layout="centered")
@@ -57,11 +58,23 @@ if st.button("Guardar en Base de Datos"):
             "stock": int(nuevo_stock)
         }
         
-        # Enviamos al Backend (POST)
-        res = requests.post(f"{API_URL}/productos", json=nuevo_producto)
+        # 🔐 AQUÍ ESTÁ EL CAMBIO: Enviamos el token en la cabecera (Header)
+        headers_seguridad = {
+            "Authorization": "Bearer supersecreto123"
+        }
+        
+        # Agregamos headers=headers_seguridad
+        res = requests.post(f"{API_URL}/productos", json=nuevo_producto, headers=headers_seguridad)
         
         if res.status_code == 200:
             st.success(f"¡Éxito! {nuevo_nombre} guardado en bodega.db")
+            
+            # Hacemos una pausa de 2 segundos para que leas el mensaje
+            time.sleep(2) 
+            
+            st.rerun() # Ahora sí, recargamos la página
+        elif res.status_code == 401:
+            st.error("⛔ Error de Permisos: Token inválido.")
         else:
             st.error("No se pudo guardar.")
     else:
