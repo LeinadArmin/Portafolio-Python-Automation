@@ -10,7 +10,7 @@ st.title("📦 Gestión de Bodega - StockFlow")
 st.write("Panel de control conectado a tu API FastAPI")
 
 # URL de tu API (el cerebro)
-API_URL = "http://127.0.0.1:8000"
+API_URL = "https://stockflow-api-leinad.onrender.com"
 
 # --- SECCIÓN 1: VER INVENTARIO ---
 st.header("📋 Inventario en Tiempo Real")
